@@ -1,3 +1,36 @@
+CREATE TABLE Hotel (
+  HotelID SERIAL PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL,
+  Address VARCHAR(255) NOT NULL,
+  Phone VARCHAR(20),
+  Email VARCHAR(255),
+  Website VARCHAR(255),
+  Amenities TEXT,
+  Description TEXT
+);
+
+CREATE TABLE Guest (
+  GuestID SERIAL PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL,
+  Address VARCHAR(255) NOT NULL,
+  Phone VARCHAR(20),
+  Email VARCHAR(255),
+  LoyaltyProgram VARCHAR(255),
+  SpecialNeeds TEXT
+);
+
+-- Other tables and relationships follow similar structure
+
+CREATE TABLE Reservation (
+  ReservationID SERIAL PRIMARY KEY,
+  GuestID INTEGER NOT NULL REFERENCES Guest(GuestID),
+  RoomID INTEGER NOT NULL REFERENCES Room(RoomID),
+  CheckInDate DATE NOT NULL,
+  CheckOutDate DATE NOT NULL,
+  NumberOfGuests INTEGER NOT NULL,
+  Status ENUM('Confirmed', 'Pending', 'Cancelled'),
+  SpecialRequests TEXT
+);
 # Getting Started
 
 So you want to help? That's great!
